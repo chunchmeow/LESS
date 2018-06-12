@@ -1,0 +1,96 @@
+//overriding Bootstrap's settings to customize styling using variables:
+
+.btn {
+    letter-spacing: 0.01em;
+    padding: ceil(@padding-large-vertical/2) @padding-base-horizontal;
+}
+.btn-default {
+    .button-variant-hoveractive(@btn-default-hover-color; @btn-default-hover-bg; @btn-default-hover-border);
+    .button-variant-disabled(@btn-disabled-bg; @btn-disabled-border; @btn-disabled-color);   
+    .button-dropdown-caret(@btn-default-color; @btn-default-border; @btn-default-hover-color; @btn-default-hover-border);         
+    .button-variant-focus(@btn-default-color; @btn-default-bg; @btn-default-border);
+    &.inverted {
+        .button-variant-base(@btn-default-bg; @btn-default-color; @btn-default-bg);
+        .button-variant-hoveractive(@btn-default-hover-bg; @btn-default-hover-color; @btn-default-hover-color);
+    }
+}
+
+.btn-primary {
+    .button-variant-hoveractive(@btn-primary-hover-color; @btn-primary-hover-bg; @btn-primary-hover-border);
+    .button-variant-disabled(@btn-disabled-bg; @btn-disabled-border; @btn-disabled-color);        
+    .button-dropdown-caret(@btn-primary-color; @btn-primary-border; @btn-primary-hover-color; @btn-primary-hover-border);        
+    .button-variant-focus(@btn-primary-color; @btn-primary-bg; @btn-primary-border); 
+    &.inverted {
+        .button-variant-base(@btn-primary-bg; @btn-primary-color; @btn-primary-color);
+        .button-variant-hoveractive(@btn-primary-hover-bg; @btn-primary-hover-color; @btn-primary-hover-bg);
+    }
+    > .caret:before {
+           content: "\f067";/*@fa-var-plus*/;
+    }
+}
+
+
+.btn-dropdown {
+    width: 100%;
+    text-align: left;
+    color: @dropdown-link-color;
+    background-color: @dropdown-bg;
+    border-color: @dropdown-border;
+    > .caret:before {
+        color: @dropdown-caret-color;  
+        background-color: @palette-white;         
+    }
+    &:hover,
+    &:active,
+    &:focus {
+        color: @dropdown-link-color;
+        background-color: @dropdown-bg;
+        border-color: @dropdown-border;
+        > .caret:before {
+            color: @dropdown-caret-color;  
+            background-color: @palette-white;         
+        }
+    }
+    &[aria-expanded="true"] {
+        color: @dropdown-link-color;
+        background-color: @dropdown-bg;
+    }
+}
+.open {
+    > .btn-dropdown {
+        color: @dropdown-link-color;
+        background-color: @palette-white;
+        border-color: @dropdown-border;
+        > .caret:before {
+            color: @dropdown-caret-color;  
+            //border-left:  1ps solid @dropdown-border;
+            background-color: @palette-white;         
+        }
+    }
+    .dropdown-menu {
+        margin-top: 0;
+        background-color: @dropdown-menu-background;
+        font-weight: normal;
+        > li {
+            &:hover {
+                background-color: @dropdown-link-active-bg;
+                > a, label {
+                    background-color: @dropdown-link-active-bg;
+                }
+            }
+        }
+    }
+}
+//customizing the Chosen plugin:
+.chosen-container-single {
+    .chosen-single {
+        &:extend(.btn all, .btn-default all, .btn-dropdown all, .btn-block, .btn-sm all);
+        > div {
+            .make-custom-caret(@color:@dropdown-caret-color; @border: @dropdown-border;);
+            &:before {
+                background-color: @dropdown-bg;
+            }
+        }
+    }
+
+}
